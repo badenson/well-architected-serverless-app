@@ -19,3 +19,34 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+### ARCHITECTURE.md Contents
+
+```markdown
+# Architecture Decisions
+
+## Microservices Approach
+
+- Each business capability is implemented as a separate Lambda function
+- Functions are independently deployable and scalable
+- Communication via API Gateway (synchronous) or EventBridge (asynchronous)
+
+## Event-Driven Design
+
+- SNS topics for pub/sub messaging
+- SQS queues for decoupled, reliable processing
+- EventBridge for event bus and scheduling
+
+## Security
+
+- IAM roles with least privilege for each Lambda function
+- API Gateway with JWT authorizer for authentication
+- DynamoDB with fine-grained access control
+- Secrets stored in AWS Secrets Manager
+
+## Infrastructure as Code
+
+- AWS SAM for Lambda-focused deployments
+- Terraform alternative for multi-service provisioning
+- Parameterized templates for different environments
